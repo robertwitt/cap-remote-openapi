@@ -39,5 +39,17 @@
       "no-console": "off",
       "require-atomic-updates": "off"
     }
+  },
+  "cds": {
+    "requires": {
+      "OpenWeatherMap.API": {
+        "kind": "rest",
+        "model": "srv/external/OpenWeatherMap.API",
+        "impl": "srv/external/OpenWeatherMap.API.js",
+        "credentials": {
+          "url": "https://api.openweathermap.org/data/2.5"
+        }
+      }
+    }
   }
 }

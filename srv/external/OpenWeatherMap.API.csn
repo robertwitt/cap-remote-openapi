@@ -1,0 +1,377 @@
+{
+  "definitions": {
+    "OpenWeatherMap.API": {
+      "kind": "service",
+      "@Capabilities.BatchSupported": false,
+      "@Capabilities.KeyAsSegmentSupported": true,
+      "@Core.Description": "OpenWeatherMap API",
+      "@Core.SchemaVersion": "2.5.1",
+      "@Core.LongDescription": "Get current weather, daily forecast for 16 days, and 3-hourly forecast 5 days for your city. Helpful stats, graphics, and this day in history charts are available for your reference. Interactive maps show precipitation, clouds, pressure, wind around your location stations. Data is available in JSON, XML, or HTML format. **Note**: This sample Swagger file covers the `current` endpoint only from the OpenWeatherMap API. <br/><br/> **Note**: All parameters are optional, but you must select at least one parameter. Calling the API by city ID (using the `id` parameter) will provide the most precise location results."
+    },
+    "OpenWeatherMap.API.weather": {
+      "kind": "function",
+      "params": {
+        "q": {
+          "type": "cds.String",
+          "@description": "**City name**. *Example: London*. You can call by city name, or by city name and country code. The API responds with a list of results that match a searching word. For the query value, type the city name and optionally the country code divided by comma; use ISO 3166 country codes.",
+          "@openapi.in": "query"
+        },
+        "id": {
+          "type": "cds.String",
+          "@description": "**City ID**. *Example: `2172797`*. You can call by city ID. API responds with exact result. The List of city IDs can be downloaded [here](http://bulk.openweathermap.org/sample/). You can include multiple cities in parameter &mdash; just separate them by commas. The limit of locations is 20. *Note: A single ID counts as a one API call. So, if you have city IDs. it's treated as 3 API calls.*",
+          "@openapi.in": "query"
+        },
+        "lat": {
+          "type": "cds.String",
+          "@description": "**Latitude**. *Example: 35*. The latitude cordinate of the location of your interest. Must use with `lon`.",
+          "@openapi.in": "query"
+        },
+        "lon": {
+          "type": "cds.String",
+          "@description": "**Longitude**. *Example: 139*. Longitude cordinate of the location of your interest. Must use with `lat`.",
+          "@openapi.in": "query"
+        },
+        "zip": {
+          "type": "cds.String",
+          "@description": "**Zip code**. Search by zip code. *Example: 95050,us*. Please note if country is not specified then the search works for USA as a default.",
+          "@openapi.in": "query"
+        },
+        "units": {
+          "type": "cds.String",
+          "@assert.range": true,
+          "enum": {
+            "standard": {},
+            "metric": {},
+            "imperial": {}
+          },
+          "@description": "**Units**. *Example: imperial*. Possible values: `metric`, `imperial`. When you do not use units parameter, format is `standard` by default.",
+          "@openapi.in": "query"
+        },
+        "lang": {
+          "type": "cds.String",
+          "@assert.range": true,
+          "enum": {
+            "ar": {},
+            "bg": {},
+            "ca": {},
+            "cz": {},
+            "de": {},
+            "el": {},
+            "en": {},
+            "fa": {},
+            "fi": {},
+            "fr": {},
+            "gl": {},
+            "hr": {},
+            "hu": {},
+            "it": {},
+            "ja": {},
+            "kr": {},
+            "la": {},
+            "lt": {},
+            "mk": {},
+            "nl": {},
+            "pl": {},
+            "pt": {},
+            "ro": {},
+            "ru": {},
+            "se": {},
+            "sk": {},
+            "sl": {},
+            "es": {},
+            "tr": {},
+            "ua": {},
+            "vi": {},
+            "zh_cn": {},
+            "zh_tw": {}
+          },
+          "@description": "**Language**. *Example: en*. You can use lang parameter to get the output in your language. We support the following languages that you can use with the corresponded lang values: Arabic - `ar`, Bulgarian - `bg`, Catalan - `ca`, Czech - `cz`, German - `de`, Greek - `el`, English - `en`, Persian (Farsi) - `fa`, Finnish - `fi`, French - `fr`, Galician - `gl`, Croatian - `hr`, Hungarian - `hu`, Italian - `it`, Japanese - `ja`, Korean - `kr`, Latvian - `la`, Lithuanian - `lt`, Macedonian - `mk`, Dutch - `nl`, Polish - `pl`, Portuguese - `pt`, Romanian - `ro`, Russian - `ru`, Swedish - `se`, Slovak - `sk`, Slovenian - `sl`, Spanish - `es`, Turkish - `tr`, Ukrainian - `ua`, Vietnamese - `vi`, Chinese Simplified - `zh_cn`, Chinese Traditional - `zh_tw`.",
+          "@openapi.in": "query"
+        },
+        "mode": {
+          "type": "cds.String",
+          "@assert.range": true,
+          "enum": {
+            "json": {},
+            "xml": {},
+            "html": {}
+          },
+          "@description": "**Mode**. *Example: html*. Determines format of response. Possible values are `xml` and `html`. If mode parameter is empty the format is `json` by default.",
+          "@openapi.in": "query"
+        }
+      },
+      "@Common.Label": "Current Weather Data",
+      "@Core.Description": "Call current weather data for one location",
+      "@Core.LongDescription": "Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations.",
+      "@openapi.path": "/weather",
+      "returns": {
+        "type": "OpenWeatherMap.API_types._200"
+      }
+    },
+    "OpenWeatherMap.API_types._200": {
+      "@title": "Successful response",
+      "elements": {
+        "coord": {
+          "type": "OpenWeatherMap.API_types.Coord"
+        },
+        "weather": {
+          "@description": "(more info Weather condition codes)",
+          "items": {
+            "type": "OpenWeatherMap.API_types.Weather"
+          }
+        },
+        "base": {
+          "@description": "Internal parameter",
+          "type": "cds.String",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": "cmc stations"
+        },
+        "main": {
+          "type": "OpenWeatherMap.API_types.Main"
+        },
+        "visibility": {
+          "@description": "Visibility, meter",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 16093
+        },
+        "wind": {
+          "type": "OpenWeatherMap.API_types.Wind"
+        },
+        "clouds": {
+          "type": "OpenWeatherMap.API_types.Clouds"
+        },
+        "rain": {
+          "type": "OpenWeatherMap.API_types.Rain"
+        },
+        "snow": {
+          "type": "OpenWeatherMap.API_types.Snow"
+        },
+        "dt": {
+          "@description": "Time of data calculation, unix, UTC",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 1435658272
+        },
+        "sys": {
+          "type": "OpenWeatherMap.API_types.Sys"
+        },
+        "id": {
+          "@description": "City ID",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 2172797
+        },
+        "name": {
+          "type": "cds.String",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": "Cairns"
+        },
+        "cod": {
+          "@description": "Internal parameter",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 200
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Coord": {
+      "@title": "Coord",
+      "elements": {
+        "lon": {
+          "@description": "City geo location, longitude",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 145.77
+        },
+        "lat": {
+          "@description": "City geo location, latitude",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": -16.92
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Weather": {
+      "@title": "Weather",
+      "elements": {
+        "id": {
+          "@description": "Weather condition id",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 803
+        },
+        "main": {
+          "@description": "Group of weather parameters (Rain, Snow, Extreme etc.)",
+          "type": "cds.String",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": "Clouds"
+        },
+        "description": {
+          "@description": "Weather condition within the group",
+          "type": "cds.String",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": "broken clouds"
+        },
+        "icon": {
+          "@description": "Weather icon id",
+          "type": "cds.String",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": "04n"
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Main": {
+      "@title": "Main",
+      "elements": {
+        "temp": {
+          "@description": "Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 293.25
+        },
+        "pressure": {
+          "@description": "Atmospheric pressure (on the sea level, if there is no sea_level or grnd_level data), hPa",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 1019
+        },
+        "humidity": {
+          "@description": "Humidity, %",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 83
+        },
+        "temp_min": {
+          "@description": "Minimum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 289.82
+        },
+        "temp_max": {
+          "@description": "Maximum temperature at the moment. This is deviation from current temp that is possible for large cities and megalopolises geographically expanded (use these parameter optionally). Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 295.37
+        },
+        "sea_level": {
+          "@description": "Atmospheric pressure on the sea level, hPa",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 984
+        },
+        "grnd_level": {
+          "@description": "Atmospheric pressure on the ground level, hPa",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 990
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Wind": {
+      "@title": "Wind",
+      "elements": {
+        "speed": {
+          "@description": "Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 5.1
+        },
+        "deg": {
+          "@description": "Wind direction, degrees (meteorological)",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 150
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Clouds": {
+      "@title": "Clouds",
+      "elements": {
+        "all": {
+          "@description": "Cloudiness, %",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 75
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Rain": {
+      "@title": "Rain",
+      "elements": {
+        "_3h": {
+          "@description": "Rain volume for the last 3 hours",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 3,
+          "@openapi.name": "3h"
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Snow": {
+      "@title": "Snow",
+      "elements": {
+        "_3h": {
+          "@description": "Snow volume for the last 3 hours",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 6,
+          "@openapi.name": "3h"
+        }
+      },
+      "kind": "type"
+    },
+    "OpenWeatherMap.API_types.Sys": {
+      "@title": "Sys",
+      "elements": {
+        "type": {
+          "@description": "Internal parameter",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 1
+        },
+        "id": {
+          "@description": "Internal parameter",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 8166
+        },
+        "message": {
+          "@description": "Internal parameter",
+          "type": "cds.Decimal",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 0.0166
+        },
+        "country": {
+          "@description": "Country code (GB, JP etc.)",
+          "type": "cds.String",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": "AU"
+        },
+        "sunrise": {
+          "@description": "Sunrise time, unix, UTC",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 1435610796
+        },
+        "sunset": {
+          "@description": "Sunset time, unix, UTC",
+          "type": "cds.Integer",
+          "@Core.Example.$Type": "Core.PrimitiveExampleValue",
+          "@Core.Example.Value": 1435650870
+        }
+      },
+      "kind": "type"
+    }
+  },
+  "meta": {
+    "creator": "cds-import-openapi"
+  }
+}
