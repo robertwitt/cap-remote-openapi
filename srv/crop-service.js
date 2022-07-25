@@ -13,10 +13,19 @@ class CropService extends cds.ApplicationService {
         lat: sites[0].latitude,
         lon: sites[0].longitude,
         zip: null,
-        units: "metrics",
+        units: "metric",
         lang: "en",
         mode: "json",
       });
+
+      return {
+        condition: weatherData.weather[0]
+          ? weatherData.weather[0].description
+          : null,
+        temparature: weatherData.main.temp,
+        humidity: weatherData.main.humidity,
+        windspeed: weatherData.wind.speed,
+      };
     });
 
     await super.init();
