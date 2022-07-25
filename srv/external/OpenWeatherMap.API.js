@@ -10,6 +10,7 @@ class OpenWeatherMapService extends cds.RemoteService {
       req.method = this._getMethod(definition);
       req.path = this._getPath(definition, req.data || {});
       req.data = {};
+      req.event = undefined;
     });
 
     await super.init();
