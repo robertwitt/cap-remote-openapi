@@ -1,0 +1,25 @@
+### Get site by ID
+GET http://localhost:4004/facility/Sites(3ee63bcf-68ec-4645-8ed1-eac74eb5c6c3)
+###
+
+### Get current weather at site
+GET http://localhost:4004/facility/Sites(3ee63bcf-68ec-4645-8ed1-eac74eb5c6c3)/getCurrentWeather()
+###
+
+### Create a new site
+POST http://localhost:4004/facility/Sites
+Content-Type: application/json
+
+{
+  "name": "SAP Headquarters",
+  "postalAddress": {
+    "addressLine": "Dietmar-Hopp-Allee 16",
+    "postalCode": "69190",
+    "city": "Walldorf",
+    "country": { "code": "DE" }
+  }
+}
+
+### Get current weather at site
+GET http://localhost:4004/facility/Sites(e6871c7d-1b19-45a2-bbd5-3e1192393968)/getCurrentWeather()
+###

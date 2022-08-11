@@ -1,25 +1,19 @@
-# Getting Started
+# OpenAPI Remote Service
 
-Welcome to your new project.
+This is a simple CAP application to demonstrate how to invoke an OpenAPI-documented API via CAP's Remote Service API.
 
-It contains these folders and files, following our recommended project layout:
+This project contains a service that exposes an endpoint `/Sites` to get basic information of a facility or site. The bound function `/Sites/<ID>/getCurrentWeather()` internally invokes a REST API of [OpenWeatherMap.org](https://openweathermap.org/current) to get the current weather at the given site.
 
-File or Folder | Purpose
----------|----------
-`app/` | content for UI frontends goes here
-`db/` | your domain models and data go here
-`srv/` | your service models and code go here
-`package.json` | project metadata and configuration
-`readme.md` | this getting started guide
+## Prerequisite
 
+You need to register at [OpenWeatheMap.org](https://openweathermap.org) and generate an API key in order to execute the requests locally.
 
-## Next Steps
+## Run locally
 
-- Open a new terminal and run `cds watch` 
-- (in VS Code simply choose _**Terminal** > Run Task > cds watch_)
-- Start adding content, for example, a [db/schema.cds](db/schema.cds).
+Start the server locally and pass the API key as environment variable `API_KEY`:
 
+```bash
+APP_KEY=<your API key> cds watch
+```
 
-## Learn More
-
-Learn more at https://cap.cloud.sap/docs/get-started/.
+You can execute the sample requests in [`requests.http`](./requests.http) to see the effect.
