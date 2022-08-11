@@ -1,6 +1,6 @@
 using {db} from '../db/schema';
 
-service CropService {
+service FacilityService {
 
   type Weather : {
     condition   : String;

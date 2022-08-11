@@ -1,6 +1,6 @@
 const cds = require("@sap/cds");
 
-class CropService extends cds.ApplicationService {
+class FacilityService extends cds.ApplicationService {
   async init() {
     const { Sites } = this.entities;
 
@@ -37,4 +37,4 @@ class CropService extends cds.ApplicationService {
   }
 }
 
-module.exports = CropService;
+module.exports = FacilityService;
