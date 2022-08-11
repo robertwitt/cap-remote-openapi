@@ -1,8 +1,8 @@
 {
   "name": "cap-remote-openapi",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
-  "repository": "<Add your repository here>",
+  "description": "Demo of CAP OpenAPI Remote Service",
+  "repository": "github:https://github.com/robertwitt/cap-remote-api",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
