@@ -6,13 +6,18 @@ class CropService extends cds.ApplicationService {
 
     this.on("getCurrentWeather", Sites, async (req) => {
       const sites = await req.query;
+      if (!sites.length) {
+        return req.reject(404);
+      }
+
+      const { postalCode, country_code: country } = sites[0].postalAddress;
       const weatherSrv = await cds.connect.to("OpenWeatherMap.API");
       const weatherData = await weatherSrv.send("weather", {
         q: null,
         id: null,
-        lat: sites[0].latitude,
-        lon: sites[0].longitude,
-        zip: null,
+        lat: null,
+        lon: null,
+        zip: `${postalCode},${country}`,
         units: "metric",
         lang: "en",
         mode: "json",

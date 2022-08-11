@@ -1,11 +1,18 @@
 namespace db;
 
-using {cuid} from '@sap/cds/common';
+using {
+  Country,
+  cuid
+} from '@sap/cds/common';
 
-type Coordinate : Decimal(15, 7);
+type Address : {
+  country     : Country;
+  city        : String;
+  postalCode  : String(10);
+  addressLine : String;
+}
 
 entity Sites : cuid {
-  name      : String;
-  longitude : Coordinate;
-  latitude  : Coordinate;
+  name          : String;
+  postalAddress : Address;
 }

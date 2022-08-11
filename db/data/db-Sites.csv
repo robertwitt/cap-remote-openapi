@@ -1,2 +1,2 @@
-ID,name,longitude,latitude
-3ee63bcf-68ec-4645-8ed1-eac74eb5c6c3,Limburgerhof Test Lab,8.394946,49.420528
+ID,name,postalAddress_country_code,postalAddress_city,postalAddress_postalCode,postalAddress_addressLine
+3ee63bcf-68ec-4645-8ed1-eac74eb5c6c3,SAP Innovation Center,DE,Potsdam,14469,Konrad-Zuse-Ring 10
