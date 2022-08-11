@@ -24,9 +24,11 @@ class OpenApiRemoteService extends cds.RemoteService {
   }
 
   _getPath(definition, data) {
+    // Maps the parameters to path segments
     const mapPathSegment = (segment) => {
-      const match = segment.match(/(?<=\{)(.*)(?=\})/g);
+      const match = segment.match(/(?<=\{)(.*)(?=\})/g); // matches e. g. {placeholder}
       if (!match) {
+        // No placeholder
         return segment;
       }
 
@@ -42,6 +44,7 @@ class OpenApiRemoteService extends cds.RemoteService {
       return paramValue.toString();
     };
 
+    // Construct the path to the endpoint by replacing placeholders with actual parameter values
     const path = definition["@openapi.path"]
       .split("/")
       .map(mapPathSegment)
@@ -54,12 +57,7 @@ class OpenApiRemoteService extends cds.RemoteService {
   _getQueryParams(definition, data) {
     const queryParams = new URLSearchParams();
     Object.entries(data)
-      .filter(
-        ([key]) =>
-          definition.params &&
-          definition.params[key] &&
-          definition.params[key]["@openapi.in"] === "query"
-      )
+      .filter(([key]) => definition.params?.[key]?.["@openapi.in"] === "query")
       .filter(([, value]) => value !== undefined && value !== null)
       .forEach(([key, value]) => queryParams.set(key, value.toString()));
 

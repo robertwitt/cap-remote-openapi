@@ -24,9 +24,7 @@ class FacilityService extends cds.ApplicationService {
       });
 
       return {
-        condition: weatherData.weather[0]
-          ? weatherData.weather[0].description
-          : null,
+        condition: weatherData.weather[0]?.description ?? null,
         temparature: weatherData.main.temp,
         humidity: weatherData.main.humidity,
         windspeed: weatherData.wind.speed,
