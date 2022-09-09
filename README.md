@@ -8,12 +8,14 @@ This project contains a service that exposes an endpoint `/Sites` to get basic i
 
 You need to register at [OpenWeatherMap.org](https://openweathermap.org) and generate an API key in order to execute the requests locally.
 
+> Having generated an API key, you may need to wait until it is activated in the system; until then, you will receive [HTTP status 401 responses](https://openweathermap.org/faq#error401) to the API requests.
+
 ## Run locally
 
 Start the server locally and pass the API key as environment variable `API_KEY`:
 
 ```bash
-APP_KEY=<your API key> cds watch
+API_KEY=<your API key> cds watch
 ```
 
 You can execute the sample requests in [`requests.http`](./requests.http) to see the effect.
