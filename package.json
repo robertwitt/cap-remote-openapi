@@ -8,6 +8,7 @@
   "dependencies": {
     "@sap-cloud-sdk/http-client": "^2.6.0",
     "@sap/cds": ">=5",
+    "cap-remote-service-rest": "^0.1.0",
     "express": "^4"
   },
   "devDependencies": {

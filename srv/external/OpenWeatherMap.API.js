@@ -1,10 +1,8 @@
-const OpenApiRemoteService = require("../utils/OpenApiRemoteService");
+const { RestRemoteService } = require("cap-remote-service-rest");
 
-class OpenWeatherMapService extends OpenApiRemoteService {
-  _getQueryParams(definition, data) {
-    const queryParams = super._getQueryParams(definition, data);
+class OpenWeatherMapService extends RestRemoteService {
+  customizeQueryParams(queryParams) {
     queryParams.set("appid", process.env.API_KEY);
-    return queryParams;
   }
 }
 
